@@ -10,10 +10,10 @@ public class ControllerGrabObject : MonoBehaviour {
     private GameObject collidingObject; // 1
     private GameObject objectInHand; // 2
 
-    // Use this for initialization
-    void Start () {
-		
-	}
+    public delegate void scaleAction(GameObject o, int controller);
+
+    public static scaleAction onScale;
+    public static scaleAction onUnscale;
 	
 	// Update is called once per frame
 	void Update () {
@@ -79,6 +79,10 @@ public class ControllerGrabObject : MonoBehaviour {
         // 2
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
+        
+        // Scale object
+        if (objectInHand)
+            onScale(objectInHand, 1);
     }
 
     // 3
@@ -103,7 +107,14 @@ public class ControllerGrabObject : MonoBehaviour {
             objectInHand.GetComponent<Rigidbody>().angularVelocity = controllerPose.GetAngularVelocity();
 
         }
+        
+        // unScale
+        if (objectInHand)
+            onUnscale(objectInHand, -1); 
+
         // 4
         objectInHand = null;
+
+        
     }
 }

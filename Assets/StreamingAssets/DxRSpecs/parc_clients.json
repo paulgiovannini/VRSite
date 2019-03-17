@@ -1,0 +1,38 @@
+{
+  "width": 500,
+  "height": 500,
+  "depth": 500,
+  "data": {
+    "url": "parc_clients.csv"
+  },
+  "mark": "cube",
+  "encoding": {
+    "x": {
+      "field": "month",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "clients",
+      "type": "quantitative"
+    },
+    "z": {
+      "field": "year",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "clients",
+      "type": "quantitative",
+      "scale": {
+          "domain": [0, 14]
+      }
+    },
+    "size": {
+        "field": "clients",
+        "type": "quantitative",
+        "scale": {
+            "domain" : [ 4, 10],
+            "range": [ 0, 50 ]
+        }
+    }
+  }
+}
